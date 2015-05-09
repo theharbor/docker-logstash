@@ -11,5 +11,6 @@ echo "deb http://packages.elasticsearch.org/logstash/${LOGSTASH_MAJOR_VERSION}/d
 
 apt-get update
 apt-get install --no-install-recommends -y logstash
-
 rm -rf /var/lib/apt/lists/*
+
+runas logstash /opt/logstash/bin/plugin install logstash-input-log-courier
