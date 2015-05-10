@@ -23,6 +23,10 @@ case $1 in
 			sed --in-place --expression 's/\$ES_PORT/${ES_PORT}/g' "$file"
 		done
 
+		if [[ ! -z "$WITH_STUNNEL" ]]; then
+			stunnel4 /etc/logstash/stunnel.conf || exit 1
+		fi
+
 		exec runas logstash /opt/logstash/bin/logstash agent  \
 			-f /etc/logstash/conf.d/
 		;;
